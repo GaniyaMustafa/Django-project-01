@@ -1,0 +1,39 @@
+{% extends 'formbase.html' %}
+
+{% block menu %}
+    <div style="background-color: black;color:white; width: 30%;height: 25rem; float: left; padding-top: 150px;border-radius: 50px">
+            {% for url, name in list %}
+                {% if name == selected %}
+                    <a href="{{url}}" style="text-decoration: none; color: gray;"><h3>{{name}}</h3></a>
+                {% else %}
+                    <a href="{{url}}" style="text-decoration: none; color: white;"><h3>{{name}}</h3></a>
+                {% endif %}
+            {% endfor %}
+        </div>
+{% endblock menu %}
+
+{% block form %}
+    <div style="width: 70%;float: left; padding-top: 150px">
+            <h1>Nama Kategori</h1>
+            <form method="post">
+                {% csrf_token %}
+                <table>
+                    {{form.as_table}}
+                    {% if selected == 'Produk' %}
+                    <tr>
+                        <td>Kategori: </td>
+                        <td>
+                            <select name="kategori">
+                                {% for d in data %}
+                                    <option value="{{d.kategori}}">{{d.kategori}}</option>
+                                {% endfor %}
+                            </select>
+                        </td>
+                    </tr>
+                    {% endif %}
+                </table>
+                <input type="submit" name="submit">
+            </form>
+        </div>
+{% endblock form %}
+

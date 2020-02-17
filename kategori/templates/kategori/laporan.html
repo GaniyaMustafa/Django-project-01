@@ -1,0 +1,38 @@
+{% extends 'formbase.html' %}
+
+{% block menu %}
+    <div style="background-color: black;color:white; width: 30%;height: 25rem; float: left; padding-top: 150px;border-radius: 50px">
+            {% for url, name in list %}
+                {% if name == selected %}
+                    <a href="{{url}}" style="text-decoration: none; color: gray;"><h3>{{name}}</h3></a>
+                {% else %}
+                    <a href="{{url}}" style="text-decoration: none; color: white;"><h3>{{name}}</h3></a>
+                {% endif %}
+            {% endfor %}
+        </div>
+{% endblock menu %}
+
+{% block form %}
+    <div style="width: 70%;float: left; padding-top: 70px">
+        <form method="post">
+            <table>
+                <tr style="background-color: black; color: white">
+                    <th>Produk</th>
+                    <th>Harga</th>
+                    <th>Kategori</th>
+                    <th>Deskripsi</th>
+                </tr>
+
+                    {% for d in data %}
+                            <tr>
+                                <td>{{d.produk}}</td>
+                                <td>{{d.harga}}</td>
+                                <td>{{d.kategori}}</td>
+                                <td>{{d.deskripsi}}</td>
+                            </tr>
+                    {% endfor %}
+            </table>
+        </form>
+    </div>
+{% endblock form %}
+
